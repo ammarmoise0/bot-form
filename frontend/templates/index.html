@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormBot</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>FormBot</h1>
+        <div class="header-right">
+            <span class="sent-counter" id="sent-counter">0 reponse(s) envoyee(s)</span>
+        </div>
+    </header>
+
+    <!-- Step 1: Choose strategy -->
+    <section class="step" id="step-1">
+        <div class="step-header">
+            <span class="step-number">1</span>
+            <h2>Choisir un profil de repondant</h2>
+        </div>
+        <div class="strategy-grid" id="strategy-grid"></div>
+    </section>
+
+    <!-- Step 2: Preview -->
+    <section class="step" id="step-2" style="display:none">
+        <div class="step-header">
+            <span class="step-number">2</span>
+            <h2>Apercu des reponses</h2>
+            <button class="btn btn-ghost" onclick="regeneratePreview()">Regenerer</button>
+        </div>
+        <p class="step-hint" id="preview-hint"></p>
+        <div class="preview-sections" id="preview-sections"></div>
+    </section>
+
+    <!-- Step 3: Send -->
+    <section class="step" id="step-3" style="display:none">
+        <div class="step-header">
+            <span class="step-number">3</span>
+            <h2>Envoyer</h2>
+        </div>
+        <div class="send-box">
+            <div class="send-row">
+                <label>Nombre de reponses a envoyer :</label>
+                <div class="send-counter-wrap">
+                    <button class="counter-btn" onclick="changeCount(-1)">-</button>
+                    <input type="number" id="submit-count" class="counter-value" value="1" min="1" max="100">
+                    <button class="counter-btn" onclick="changeCount(1)">+</button>
+                </div>
+            </div>
+            <p class="send-note">Chaque reponse sera differente, generee automatiquement selon le profil choisi.</p>
+            <button class="btn btn-send" id="send-btn" onclick="sendResponses()">
+                Envoyer les reponses
+            </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="send-progress" id="send-progress" style="display:none">
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+            <p class="progress-text" id="progress-text">Envoi en cours...</p>
+            <div class="results-list" id="results-list"></div>
+        </div>
+    </section>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
